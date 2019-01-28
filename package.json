@@ -1,0 +1,29 @@
+{
+  "name": "overwatch-stats-api",
+  "version": "1.0.0",
+  "description": "get stats from blizzard career profile pages",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "node-fetch": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatchan/overwatch-stats-api.git"
+  },
+  "keywords": [
+    "overwatch",
+    "stats",
+    "api"
+  ],
+  "author": "Tom 69420#9999",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/fatchan/overwatch-stats-api/issues"
+  },
+  "homepage": "https://github.com/fatchan/overwatch-stats-api#readme"
+}
