@@ -28,7 +28,9 @@ const heroIDMap =  {
 	'0x02E000000000012E': 'sombra',
 	'0x02E000000000013B': 'ana',
 	'0x02E000000000013E': 'orisa',
-	'0x02E00000000001A2': 'moira' 
+	'0x02E00000000001A2': 'moira',
+	'0x02E00000000001CA': 'wrecking ball',
+	'0x02E0000000000200': 'ashe'
 }
 
 module.exports.getStats = async (battletag, platform) => {
@@ -111,18 +113,18 @@ function getHeroStats($, type) {
 		//if we found a hero name
 		if (heroID) {
 			const heroName = heroIDMap[heroID];
-			//hero stat object
-			const statObj = {
-				hero_specific: {},
-				combat: {},
-				assists: {},
-				best: {},
-				average: {},
-				game: {},
-				miscellaneous: {},
-				match_awards: {}
-			}
 			if (heroName) {
+				//hero stat object
+				const statObj = {
+					hero_specific: {},
+					combat: {},
+					assists: {},
+					best: {},
+					average: {},
+					game: {},
+					miscellaneous: {},
+					match_awards: {}
+				}
 				//look at the table data for info
 				$(this).children().find('tr').each(function() {
 					//get the category of this info by looking at table datas parents
@@ -154,10 +156,17 @@ function getMostPlayed($, type) {
 	$('#'+type).find('.career-section').first().find('[data-category-id="0x0860000000000021"]').first().find('.ProgressBar-title').each(function() {
 		const timePlayed = $(this).next().text();
 		const imgURL = $(this).parent().parent().prev().attr('src');
-		const heroName = heroIDMap[imgURL.substring(imgURL.length-22, imgURL.length-4)];
+		const heroID = imgURL.substring(imgURL.length-22, imgURL.length-4)
+		const heroName = heroIDMap[heroID];
+		
 		data[heroName] = { time: timePlayed, img: imgURL};
 	});
 	
 	return data;
 	
 }
+
+(async () => {
+	const data = await module.exports.getStats('HusseinObama-11715', 'pc')
+	console.log(data)
+})();
