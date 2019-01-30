@@ -2,41 +2,12 @@
 
 const cheerio = require('cheerio')
 	, fetch = require('node-fetch')
-
-const heroIDMap =  {
-	'0x02E00000FFFFFFFF': 'overall',
-	'0x02E0000000000195': 'brigitte',
-	'0x02E0000000000002': 'reaper',
-	'0x02E0000000000003': 'tracer',
-	'0x02E0000000000004': 'mercy',
-	'0x02E0000000000005': 'hanzo',
-	'0x02E0000000000006': 'torbjorn',
-	'0x02E0000000000007': 'reinhardt',
-	'0x02E0000000000008': 'pharah',
-	'0x02E0000000000009': 'winston',
-	'0x02E000000000000A': 'widowmaker',
-	'0x02E0000000000015': 'bastion',
-	'0x02E0000000000016': 'symmetra',
-	'0x02E0000000000029': 'genji',
-	'0x02E0000000000042': 'mccree',
-	'0x02E0000000000065': 'junkrat',
-	'0x02E0000000000068': 'zarya',
-	'0x02E000000000006E': 'soldier',
-	'0x02E0000000000079': 'lucio',
-	'0x02E000000000007A': 'dva',
-	'0x02E00000000000DD': 'mei',
-	'0x02E000000000012E': 'sombra',
-	'0x02E000000000013B': 'ana',
-	'0x02E000000000013E': 'orisa',
-	'0x02E00000000001A2': 'moira',
-	'0x02E00000000001CA': 'hammond',
-	'0x02E0000000000200': 'ashe'
-}
+	, heroIDMap = require('./heroIDs.json');
 
 module.exports.getStats = async (battletag, platform) => {
-	
+
 	const profileURL = encodeURI(`https://playoverwatch.com/en-us/career/${platform}/${battletag}`)
-	
+
 	//fetch profile
 	let body;
 	try {
@@ -49,7 +20,7 @@ module.exports.getStats = async (battletag, platform) => {
 		console.error(e);
 		throw e
 	}
-	
+
 	//load into cheerio
 	const $ = cheerio.load(body);
 
@@ -99,15 +70,15 @@ module.exports.getStats = async (battletag, platform) => {
 	//add hero playtime
 	apiResponse.mostPlayed['competitive'] = getMostPlayed($, 'competitive');
 	apiResponse.mostPlayed['quickplay'] = getMostPlayed($, 'quickplay');
-	
+
 	return apiResponse;
-	
+
 }
 
 function getHeroStats($, type) {
-	
+
 	const data = {};
-	
+
 	$('#'+type).find('[data-group-id=stats]').each(function() {
 		const heroID = $(this).attr('data-category-id');
 		//if we found a hero name
@@ -144,29 +115,24 @@ function getHeroStats($, type) {
 			}
 		}
 	});
-	
+
 	return data;
-	
+
 }
 
 function getMostPlayed($, type) {
-	
+
 	const data = {}
-	
+
 	$('#'+type).find('.career-section').first().find('[data-category-id="0x0860000000000021"]').first().find('.ProgressBar-title').each(function() {
 		const timePlayed = $(this).next().text();
 		const imgURL = $(this).parent().parent().prev().attr('src');
 		const heroID = imgURL.substring(imgURL.length-22, imgURL.length-4)
 		const heroName = heroIDMap[heroID];
-		
+
 		data[heroName] = { time: timePlayed, img: imgURL};
 	});
-	
-	return data;
-	
-}
 
-(async () => {
-	const data = await module.exports.getStats('HusseinObama-11715', 'pc')
-	console.log(data)
-})();
+	return data;
+
+}
