@@ -1,6 +1,6 @@
 'use strict';
 
-const ow = require('overwatch-stats-api');
+const ow = require('../src/index.js');
 
 (async() => {
 	const stats = await ow.getStats('HusseinObama-11715', 'pc');
