@@ -6,16 +6,27 @@ https://playoverwatch.com/en-us/career/PLATFORM/BATTLETAG
 
 Gets rank level, endorsements, hero stats and most played time for quickplay and competitive.
 
-#### Usage
+### Example
 ```
 const ow = require('overwatch-stats-api');
-
-const stats = await ow.getStats('HusseinObama-11715', 'pc');
-
-console.log(stats)
+(async () => {
+	const stats = await ow.getAllStats('HusseinObama-11715', 'pc');
+	console.log(stats)
+})();
 ```
 
-Example data
+### Please note
+ - Profiles in overwatch are private by default and this module can only get stats that are publicly available. You can make your profile public in game under options -> social -> career profile visibility: PUBLIC
+ - Profile visibility and the profile stats in general only update upon exiting the game and may take some time to update on blizzard website and therefore through this module.
+ - Because this module gets the profile page and parses it, best practice would be to simply use getAllStats() and cache it for some time, using each part as needed since accessing and downloading the whole page multiple times for each different section of stats will result in excessive hits to blizzard site and could potentially lead to ratelimits.
+ - This module does not do any caching and you should definitely consider this if using it in some kind of web api application 
+
+### Methods
+Battletag is a Blizzard battletag in the format "NAME-DISCRIMINATOR" e.g. "xQc-11273" and are case sensitive.
+Platform can be either pc, xbl or psn for pc, xbox live of playstation network profiles.
+
+##### getAllStats(battletag, platform)
+Get all stats from other 3 methods combined.
 ```
 {
     "dateFetched": 1548640266024,
@@ -28,33 +39,62 @@ Example data
         "teammate": "58",
         "sportsmanship": "20"
     },
-    "heroStats": {
-        "competitive": {
-            "overall": {
-                "combat": { ... },
-                "assists": { ... },
-                "best": { ... },
-                "average": { ... },
-                "game": { ... },
-                "miscellaneous": { ... },
-                "match_awards": { ... },
-            },
-            "ana": {
+    "profileURL": "https://playoverwatch.com/en-us/career/pc/HusseinObama-11715",
+    "iconURL": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/f5a1929df2af047300e2fe438c1a6ee6a349b47c82a86198540ca43e89ed5ceb.png",
+    "rankIconURL": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png",
+    "borderURL": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/ba68d2c0f1b55e1991161cb1f88f369b97311452564b200ea1da226eb493e2e8.png",
+    "starsURL": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/426c754c76cd12e6aacd30293a67363571341eea37880df549d3e02015a588fe.png",
+	"heroStats": {
+		"competitive": {
+			"overall": {
+				"combat": { ... },
+				"assists": { ... },
+				"best": { ... },
+				"average": { ... },
+				"game": { ... },
+				"miscellaneous": { ... },
+				"match_awards": { ... },
+			},
+			"ana": {
+					...
+			},
+			...
+		},
+		"quickplay": {
+			...
+		}
+	},
+	"mostPlayed": {
+		"competitive": {
+			"mei": {
+				"time": "16:05:18",
+				"img": "https://d1u1mce87gyfbn.cloudfront.net/game/heroes/small/0x02E00000000000DD.png"
+			},
+			"dva": {
 				...
-            },
-            ...
-    },
-    "mostPlayed": {
-        "competitive": {
-            "mei": {
-                "time": "16:05:18",
-                "img": "https://d1u1mce87gyfbn.cloudfront.net/game/heroes/small/0x02E00000000000DD.png"
-            },
-            "dva": {
-                ...
-            },
-            ...
-        }
+			},
+			...
+		},
+		"quickplay": {
+			...
+		}
+	}
+}
+```
+
+##### getBasicInfo(battletag, platform)
+Get basic info like rank, level, endorsements and link to profile, stars and border images.
+```
+{
+    "dateFetched": 1548640266024,
+    "battletag": "HusseinObama-11715",
+    "rank": "2655",
+    "level": "42",
+    "endorsementLevel": "2",
+    "endorsements": {
+        "shotcaller": "22",
+        "teammate": "58",
+        "sportsmanship": "20"
     },
     "profileURL": "https://playoverwatch.com/en-us/career/pc/HusseinObama-11715",
     "iconURL": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/f5a1929df2af047300e2fe438c1a6ee6a349b47c82a86198540ca43e89ed5ceb.png",
@@ -62,6 +102,52 @@ Example data
     "borderURL": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/ba68d2c0f1b55e1991161cb1f88f369b97311452564b200ea1da226eb493e2e8.png",
     "starsURL": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/426c754c76cd12e6aacd30293a67363571341eea37880df549d3e02015a588fe.png"
 }
+```
 
 
+##### getHeroStats(battletag, platform)
+Get hero stats for competitive and quickplay with categories under each hero and an "overall" hero for overall stats in that mode
+categories are combat, assists, best, average, game, miscellaneous and match_awards.
+```
+{
+	"competitive": {
+		"overall": {
+			"combat": { ... },
+			"assists": { ... },
+			"best": { ... },
+			"average": { ... },
+			"game": { ... },
+			"miscellaneous": { ... },
+			"match_awards": { ... },
+		},
+		"ana": {
+				...
+		},
+		...
+	},
+	"quickplay": {
+		...
+	}
+}
+```
+
+
+##### getMostPlayed(battletag, platform)
+Get the most played heros for competitive and quickplay with a HH:MM:SS time string and link to their thumbnail image in descending order of time played.
+```
+{
+	"competitive": {
+		"mei": {
+			"time": "16:05:18",
+			"img": "https://d1u1mce87gyfbn.cloudfront.net/game/heroes/small/0x02E00000000000DD.png"
+		},
+		"dva": {
+			...
+		},
+		...
+	},
+	"quickplay": {
+		...
+	}
+}
 ```
