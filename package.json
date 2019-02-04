@@ -1,6 +1,6 @@
 {
   "name": "overwatch-stats-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "get stats from blizzard career profile pages",
   "main": "src/index.js",
   "dependencies": {
