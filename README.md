@@ -1,5 +1,9 @@
 # overwatch-stats-api
 
+![downloads](https://img.shields.io/npm/dt/overwatch-stats-api.svg?style=flat)
+![version](https://img.shields.io/npm/v/overwatch-stats-api.svg?style=flat)
+
+
 get stats from blizzard career profile pages
 
 https://playoverwatch.com/en-us/career/PLATFORM/BATTLETAG
