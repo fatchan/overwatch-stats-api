@@ -4,7 +4,7 @@
 ![version](https://img.shields.io/npm/v/overwatch-stats-api.svg?style=flat)
 
 
-get stats from blizzard career profile pages
+Get stats from blizzard career profile pages
 
 https://playoverwatch.com/en-us/career/PLATFORM/BATTLETAG
 
@@ -155,3 +155,11 @@ Get the most played heros for competitive and quickplay with a HH:MM:SS time str
 	}
 }
 ```
+
+### Rejections
+These methods return promises that are sometimes rejected with an `Error`:
+- If the profile can't be found: `Error('PROFILE_NOT_FOUND');`
+- If the profile is private. `Error('PROFILE_PRIVATE');`
+
+### Demo
+You can try this package with [RunKit](https://npm.runkit.com/overwatch-stats-api)
