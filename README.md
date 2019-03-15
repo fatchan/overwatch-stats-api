@@ -11,7 +11,7 @@ https://playoverwatch.com/en-us/career/PLATFORM/BATTLETAG
 Gets rank level, endorsements, hero stats and most played time for quickplay and competitive.
 
 ### Example
-```
+```js
 const ow = require('overwatch-stats-api');
 (async () => {
 	const stats = await ow.getAllStats('HusseinObama-11715', 'pc');
@@ -31,7 +31,7 @@ Platform can be either pc, xbl or psn for pc, xbox live of playstation network p
 
 ##### getAllStats(battletag, platform)
 Get all stats from other 3 methods combined.
-```
+```js
 {
     "dateFetched": 1548640266024,
     "battletag": "HusseinObama-11715",
@@ -88,7 +88,7 @@ Get all stats from other 3 methods combined.
 
 ##### getBasicInfo(battletag, platform)
 Get basic info like rank, level, endorsements and link to profile, stars and border images.
-```
+```js
 {
     "dateFetched": 1548640266024,
     "battletag": "HusseinObama-11715",
@@ -112,7 +112,7 @@ Get basic info like rank, level, endorsements and link to profile, stars and bor
 ##### getHeroStats(battletag, platform)
 Get hero stats for competitive and quickplay with categories under each hero and an "overall" hero for overall stats in that mode
 categories are combat, assists, best, average, game, miscellaneous and match_awards.
-```
+```js
 {
 	"competitive": {
 		"overall": {
@@ -138,7 +138,7 @@ categories are combat, assists, best, average, game, miscellaneous and match_awa
 
 ##### getMostPlayed(battletag, platform)
 Get the most played heros for competitive and quickplay with a HH:MM:SS time string and link to their thumbnail image in descending order of time played.
-```
+```js
 {
 	"competitive": {
 		"mei": {
