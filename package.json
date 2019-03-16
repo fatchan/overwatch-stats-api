@@ -25,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/fatchan/overwatch-stats-api/issues"
   },
-  "homepage": "https://github.com/fatchan/overwatch-stats-api#readme"
+  "homepage": "https://github.com/fatchan/overwatch-stats-api#readme",
+  "types": "./typings/index.d.ts"
 }
