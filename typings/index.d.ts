@@ -13,28 +13,28 @@ declare module 'overwatch-stats-api' {
    * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
    * @param platform Either `'pc'`, `'xbl'` or `'psn'`
    */
-  export function getAllStats(battletag: string, platform: string): AllStats
+  export function getAllStats(battletag: string, platform: string): Promise<AllStats>
 
   /**
    * Gets some basic stats about the profile
    * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
    * @param platform Either `'pc'`, `'xbl'` or `'psn'`
    */
-  export function getBasicInfo(battletag: string, platform: string): BasicInfo
+  export function getBasicInfo(battletag: string, platform: string): Promise<BasicInfo>
 
   /**
    * Gets stats about the heroes
    * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
    * @param platform Either `'pc'`, `'xbl'` or `'psn'`
    */
-  export function getHeroStats(battletag: string, platform: string): HeroStats
+  export function getHeroStats(battletag: string, platform: string): Promise<HeroStats>
 
   /**
    * Gets the playtime for every hero
    * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
    * @param platform Either `'pc'`, `'xbl'` or `'psn'`
    */
-  export function getMostPlayed(battletag: string, platform: string): MostPlayed
+  export function getMostPlayed(battletag: string, platform: string): Promise<MostPlayed>
 
   interface AllStats extends BasicInfo {
     heroStats: HeroStats
