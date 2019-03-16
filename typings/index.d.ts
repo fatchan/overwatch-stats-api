@@ -1,7 +1,39 @@
+/* HOW TO MAINTAIN THIS FILE
+  This file needs to be updated every time a new hero is released.
+  1) Perform a getHeroStats() request and take note of new hero's name.
+  2) Add that name to the HeroStatsGroup interface.
+  3) Create a new class that extends HeroBase and add the hero_specific properties.
+  4) Assign that class as the type for the new property of HeroStatsGroup you created in point 2.
+  5) Add that name to the MostPlayedGroup interface (use MostPlayedHero as type)
+*/
+
 declare module 'overwatch-stats-api' {
+  /**
+   * Gets all the possible stats for a user. Combines the results from the other 3 methods: `getBasicInfo`, `getHeroStats` and `getMostPlayed`
+   * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
+   * @param platform Either `'pc'`, `'xbl'` or `'psn'`
+   */
   export function getAllStats(battletag: string, platform: string): AllStats
+
+  /**
+   * Gets some basic stats about the profile
+   * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
+   * @param platform Either `'pc'`, `'xbl'` or `'psn'`
+   */
   export function getBasicInfo(battletag: string, platform: string): BasicInfo
+
+  /**
+   * Gets stats about the heroes
+   * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
+   * @param platform Either `'pc'`, `'xbl'` or `'psn'`
+   */
   export function getHeroStats(battletag: string, platform: string): HeroStats
+
+  /**
+   * Gets the playtime for every hero
+   * @param battletag Use the `'NAME-DISCRIMINATOR'` format if on pc, otherwise just type the name (case sensitive)
+   * @param platform Either `'pc'`, `'xbl'` or `'psn'`
+   */
   export function getMostPlayed(battletag: string, platform: string): MostPlayed
 
   interface AllStats extends BasicInfo {
