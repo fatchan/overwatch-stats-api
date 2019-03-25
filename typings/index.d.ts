@@ -73,6 +73,7 @@ declare module 'overwatch-stats-api' {
   interface HeroStatsGroup {
     ana: Ana
     ashe: Ashe
+    baptiste: Baptiste
     bastion: Bastion
     brigitte: Brigitte
     doomfist: Doomfist
@@ -232,6 +233,32 @@ declare module 'overwatch-stats-api' {
       scoped_critical_hits_avg_per_10_min: string
       scoped_critical_hits_most_in_game: string
       secondary_fire_accuracy: string
+    }
+  }
+
+  interface Baptiste extends HeroBase {
+    hero_specific: {
+      amplification_matrix_assists: string
+      amplification_matrix_assists_avg_per_10_min: string
+      amplification_matrix_assists_best_in_game: string
+      amplification_matrix_casts: string
+      amplification_matrix_casts_avg_per_10_min: string
+      amplification_matrix_casts_most_in_game: string
+      damage_amplified: string
+      damage_amplified_avg_per_10_min: string
+      damage_amplified_most_in_game: string
+      healing_accuracy: string
+      healing_accuracy_best_in_game: string
+      healing_amplified: string
+      healing_amplified_avg_per_10_min: string
+      healing_amplified_most_in_game: string
+      immortality_field_deaths_prevented: string
+      immortality_field_deaths_prevented_avg_per_10_min: string
+      immortality_field_deaths_prevented_most_in_game: string
+      secondary_fire_accuracy: string
+      self_healing: string
+      self_healing_avg_per_10_min: string
+      self_healing_most_in_game: string
     }
   }
 
