@@ -36,8 +36,8 @@ Get all stats from other 3 methods combined.
     "dateFetched": 1548640266024,
     "battletag": "HusseinObama-11715",
     "rank": "2655",
-		"level": "42",
-		"prestige": "8",
+    "level": "42",
+    "prestige": "8",
     "endorsementLevel": "2",
     "endorsements": {
         "shotcaller": "22",
@@ -94,8 +94,8 @@ Get basic info like rank, level, endorsements and link to profile, stars and bor
     "dateFetched": 1548640266024,
     "battletag": "HusseinObama-11715",
     "rank": "2655",
-		"level": "42",
-		"prestige": "8",
+    "level": "42",
+    "prestige": "8",
     "endorsementLevel": "2",
     "endorsements": {
         "shotcaller": "22",
