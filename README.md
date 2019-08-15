@@ -15,7 +15,7 @@ Gets rank level, endorsements, hero stats and most played time for quickplay and
 const ow = require('overwatch-stats-api');
 (async () => {
 	const stats = await ow.getAllStats('HusseinObama-11715', 'pc');
-	console.log(stats)
+	console.log(stats);
 })();
 ```
 
