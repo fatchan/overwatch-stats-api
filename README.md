@@ -37,6 +37,7 @@ Get all stats from other 3 methods combined.
     "battletag": "HusseinObama-11715",
     "rank": "2655",
     "level": "42",
+    "prestige": "8",
     "endorsementLevel": "2",
     "endorsements": {
         "shotcaller": "22",
@@ -94,6 +95,7 @@ Get basic info like rank, level, endorsements and link to profile, stars and bor
     "battletag": "HusseinObama-11715",
     "rank": "2655",
     "level": "42",
+    "prestige": "8",
     "endorsementLevel": "2",
     "endorsements": {
         "shotcaller": "22",

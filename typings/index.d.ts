@@ -52,6 +52,7 @@ declare module 'overwatch-stats-api' {
     }
     iconURL: string
     level: string
+    prestige: number
     profileURL: string
     rank: string
     rankIconURL?: string
