@@ -90,7 +90,42 @@ const PRESTIGE_STARS = {
   "cd877430ccc400c10e24507dba972e24a4543edc05628045300f1349cf003f3a": 5, // 5 Diamond stars
 }
 
-module.exports = {
-  PRESTIGE_BORDERS,
-  PRESTIGE_STARS
+/**
+ * Parses the URL of a frame/stars image and returns its ID
+ * @param {string} url The URL of the asset
+ * @returns {string} The corresponding ID
+ */
+function parseAssetID(url) {
+  // Example URL: https://d15f34w2p8l1cc.cloudfront.net/overwatch/4a2c852a16043f613b7bfac33c8536dd9f9621a3d567174cb4ad9a80e3b13102.png
+  if (typeof url != 'string') throw new Error('The url must be a string.');
+
+  let arr = url.split('/');
+  let id = arr[arr.length - 1].split('.')[0];
+
+  return id;
 }
+
+/**
+ * Parses the URLs of the frame & stars images and returns the corresponding prestige
+ * @param {string} frameURL The URL of the frame
+ * @param {string} starsURL The URL of the stars
+ * @returns {number} The corresponding prestige
+ */
+function getPrestige(frameURL, starsURL = '') {
+  let prestige;
+
+  if (typeof frameURL != 'string') throw new Error('frameURL must be a string.');
+  if (typeof starsURL != 'string') throw new Error('starsURL must be a string.');
+
+  let frameID = parseAssetID(frameURL);
+  prestige = PRESTIGE_BORDERS[frameID];
+
+  if (starsURL) {
+    let starsID = parseAssetID(starsURL);
+    prestige += PRESTIGE_STARS[starsID];
+  }
+
+  return prestige || undefined;
+}
+
+module.exports = getPrestige
