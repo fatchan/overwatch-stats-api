@@ -54,9 +54,20 @@ declare module 'overwatch-stats-api' {
     level: string
     prestige: number
     profileURL: string
-    rank: string
-    rankIconURL?: string
+    rank: Rank
     starsURL: string
+  }
+
+  interface Rank {
+    damage?: RankRole
+    support?: RankRole
+    tank?: RankRole
+  }
+
+  interface RankRole {
+    sr: string
+    roleIcon: string
+    tierIcon: string
   }
 
   interface HeroStats {
