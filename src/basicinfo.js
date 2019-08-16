@@ -17,9 +17,24 @@ module.exports = async (battletag, platform, html) => {
 		}
 	}
 
+	let rank = {};
+
+	$('.competitive-rank-role').each((index, element) => {
+		let roleIcon = $(element).find('.competitive-rank-role-icon').first().attr('src');
+		let roleName = $(element).find('.competitive-rank-tier-tooltip').attr('data-ow-tooltip-text').split(' ')[0].toLowerCase();
+		let tierIcon = $(element).find('.competitive-rank-tier-icon').attr('src');
+		let sr = $(element).find('.competitive-rank-level').text();
+
+		rank[roleName] = {
+			sr,
+			roleIcon,
+			tierIcon
+		}
+	});
+
 	const data = {
 		battletag,
-		rank: $('.competitive-rank').find('div').first().text(),
+		rank,
 		level: $('.player-level').find('div').first().text(),
 		prestige: getPrestige(borderURL, starsURL) || '',
 		endorsementLevel: ($('.endorsement-level').find('div').last().text() || 0),
@@ -30,7 +45,6 @@ module.exports = async (battletag, platform, html) => {
 		},
 		profileURL: encodeURI(`https://playoverwatch.com/en-us/career/${platform}/${battletag}`),
 		iconURL: $('.player-portrait').attr('src'),
-		rankIconURL: $('.competitive-rank').find('img').attr('src'),
 		borderURL,
 		starsURL
 	}
