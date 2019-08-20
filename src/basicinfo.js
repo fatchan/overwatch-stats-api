@@ -37,7 +37,7 @@ module.exports = async (battletag, platform, html) => {
 		rank,
 		level: $('.player-level').find('div').first().text(),
 		prestige: getPrestige(borderURL, starsURL) || '',
-		endorsementLevel: ($('.endorsement-level').find('div').last().text() || 0),
+		endorsementLevel: ($('.endorsement-level').first().next().text() || 0),
 		endorsements: {
 			shotcaller: (($('.EndorsementIcon-border--shotcaller').attr('data-value') * 100).toFixed() || 0),
 			teammate: (($('.EndorsementIcon-border--teammate').attr('data-value') * 100).toFixed() || 0),
