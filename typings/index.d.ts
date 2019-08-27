@@ -32,7 +32,7 @@ declare module 'overwatch-stats-api' {
    */
   export function getMostPlayed(battletag: string, platform: string): Promise<MostPlayed>
 
-  export type Hero = 'ana' | 'ashe' | 'bastion' | 'brigitte' | 'doomfist' | 'dva' | 'genji' | 'hammond' | 'hanzo' | 'junkrat' | 'lucio' | 'mccree' | 'mei' | 'mercy' | 'moira' | 'orisa' | 'phara' | 'reaper' | 'reinhardt' | 'roadhog' | 'soldier' | 'sombra' | 'symmetra' | 'torbjorn' | 'tracer' | 'widowmaker' | 'winston' | 'zarya' | 'zenyatta'
+  export type Hero = 'ana' | 'ashe' | 'baptiste' | 'bastion' | 'brigitte' | 'doomfist' | 'dva' | 'genji' | 'hammond' | 'hanzo' | 'junkrat' | 'lucio' | 'mccree' | 'mei' | 'mercy' | 'moira' | 'orisa' | 'phara' | 'reaper' | 'reinhardt' | 'roadhog' | 'soldier' | 'sombra' | 'symmetra' | 'torbjorn' | 'tracer' | 'widowmaker' | 'winston' | 'zarya' | 'zenyatta'
 
   interface AllStats extends BasicInfo {
     heroStats: HeroStats
