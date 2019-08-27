@@ -74,11 +74,11 @@ declare module 'overwatch-stats-api' {
   }
 
   interface MostPlayed {
-    competitive: HeroStatsGroup
-    quickplay: HeroStatsGroup
+    competitive: Record<Hero, MostPlayedHero>
+    quickplay: Record<Hero, MostPlayedHero>
   }
 
-  interface HeroStatsGroup extends Record<Hero, MostPlayedHero> {
+  interface HeroStatsGroup extends Record<Hero, RegularHero> {
     overall: HeroBase
   }
 
@@ -155,7 +155,6 @@ declare module 'overwatch-stats-api' {
       games_won: string
       time_played: string
     }
-    hero_specific: Record<string, string>
     match_awards: {
       cards: string
       medals: string
@@ -167,6 +166,10 @@ declare module 'overwatch-stats-api' {
       teleporter_pad_destroyed: string
       turrets_destroyed: string
     }
+  }
+
+  interface RegularHero extends HeroBase {
+    hero_specific: Record<string, string>
   }
 
   interface MostPlayedHero {
