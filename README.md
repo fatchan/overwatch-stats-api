@@ -4,7 +4,7 @@
 ![version](https://img.shields.io/npm/v/overwatch-stats-api.svg?style=flat)
 
 
-Get stats from blizzard career profile pages
+Get stats from Blizzard's career profile pages.
 
 https://playoverwatch.com/en-us/career/PLATFORM/BATTLETAG
 
@@ -20,20 +20,20 @@ const ow = require('overwatch-stats-api');
 ```
 
 ### Please note
- - Profiles in overwatch are private by default and this module can only get stats that are publicly available. You can make your profile public in game under options -> social -> career profile visibility: PUBLIC
- - Profile visibility and the profile stats in general only update upon exiting the game and may take some time to update on blizzard website and therefore through this module.
- - Because this module gets the profile page and parses it, best practice would be to simply use getAllStats() and cache it for some time, using each part as needed since accessing and downloading the whole page multiple times for each different section of stats will result in excessive hits to blizzard site and could potentially lead to ratelimits.
- - This module does not do any caching and you should definitely consider this if using it in some kind of web api application 
+ - Profiles in Overwatch are private by default and this module can only get stats that are publicly available. You can make your profile public in game under options -> social -> career profile visibility: PUBLIC
+ - Profile visibility and the profile stats in general only update upon exiting the game: they may take some time to update on Blizzard's website and therefore through this module.
+ - Because this module gets the profile page and parses it, best practice would be to simply use `getAllStats()` and cache it for some time, using each part as needed since accessing and downloading the whole page multiple times for each different section of stats will result in excessive hits to Blizzard's site and could potentially lead to ratelimits.
+ - This module does not do any caching and you should definitely consider this if using it in some kind of web API application.
 
 ### Methods
-Battletag is a Blizzard battletag in the format "NAME-DISCRIMINATOR" e.g. "xQc-11273" and are case sensitive.
-Platform can be either pc, xbl or psn for pc, xbox live of playstation network profiles.
+`battletag` are Blizzard battletags in the `"NAME-DISCRIMINATOR"` format (e.g. `"xQc-11273"`) and are case sensitive.  
+`platform` can be either `pc`, `xbl` or `psn` for PC, Xbox Live and PlayStation Network profiles respectively.
 
-##### getAllStats(battletag, platform)
-Get all stats from other 3 methods combined.
+#### getAllStats(battletag, platform)
+Get all stats from other 3 methods combined.  
+For an updated full response please see the [demo](#demo).
 ```js
 {
-    "dateFetched": 1548640266024,
     "battletag": "HusseinObama-11715",
     "rank": {
       "damage": {
@@ -106,7 +106,6 @@ Get all stats from other 3 methods combined.
 Get basic info like rank, level, endorsements and link to profile, stars and border images.
 ```js
 {
-    "dateFetched": 1548640266024,
     "battletag": "HusseinObama-11715",
     "rank": {
       "damage": {
@@ -195,4 +194,4 @@ These methods return promises that are sometimes rejected with an `Error`:
 - If the profile is private. `Error('PROFILE_PRIVATE');`
 
 ### Demo
-You can try this package with [RunKit](https://npm.runkit.com/overwatch-stats-api)
+You can try this package with [RunKit](https://npm.runkit.com/overwatch-stats-api).
