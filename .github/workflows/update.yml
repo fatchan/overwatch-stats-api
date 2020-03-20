@@ -1,0 +1,30 @@
+name: Update documentation files
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - "scripts/types.js"
+      - ".github/workflows/update.yml"
+    branches:
+      - master
+
+jobs:
+  udpate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - run: npm i
+      - run: npm run types
+
+      - uses: EndBug/add-and-commit@v4
+        with:
+          add: typings
+          message: "[auto] Update typings"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

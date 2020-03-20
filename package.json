@@ -9,6 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "types": "node scripts/types.js",
     "test": "node test/test.js"
   },
   "repository": {

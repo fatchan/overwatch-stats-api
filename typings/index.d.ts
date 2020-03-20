@@ -1,7 +1,9 @@
 /* HOW TO MAINTAIN THIS FILE
-  This file needs to be updated every time a new hero is released: when that happens, add their name to the 'Hero' type as shown below
-  If any response to any method is changed you need to update the corresponding structure as shown below
+  This file DOES NOT need to be updated every time a new hero is released: when that happens, the update.yml workflow will automatically updateadd the new hero in autogen.ts
+  IMPORTANT: If any response to any method is changed you need to update the corresponding structure as shown below
 */
+
+import { hero } from './autogen'
 
 declare module 'overwatch-stats-api' {
   /**
@@ -32,7 +34,7 @@ declare module 'overwatch-stats-api' {
    */
   export function getMostPlayed(battletag: string, platform: string): Promise<MostPlayed>
 
-  export type Hero = 'ana' | 'ashe' | 'baptiste' | 'bastion' | 'brigitte' | 'doomfist' | 'dva' | 'genji' | 'hammond' | 'hanzo' | 'junkrat' | 'lucio' | 'mccree' | 'mei' | 'mercy' | 'moira' | 'orisa' | 'phara' | 'reaper' | 'reinhardt' | 'roadhog' | 'sigma' | 'soldier' | 'sombra' | 'symmetra' | 'torbjorn' | 'tracer' | 'widowmaker' | 'winston' | 'zarya' | 'zenyatta'
+  export type Hero = hero
 
   interface AllStats extends BasicInfo {
     heroStats: HeroStats
