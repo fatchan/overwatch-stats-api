@@ -1,0 +1,29 @@
+name: Lint source code
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - ".github/workflows/linting.yml"
+    branches:
+      - master
+
+jobs:
+  udpate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - run: npm i
+      - run: npm run lint
+
+      - uses: EndBug/add-and-commit@v4
+        with:
+          add: src
+          message: "[auto] Lint source code"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
